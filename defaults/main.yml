@@ -1,0 +1,25 @@
+---
+
+# home dir
+home_dir: "/home/vagrant/"
+
+# URL para baixar o mongo
+mongo_download_url: http://192.168.50.49/repository/applications/mongo/2.6.0/mongodb-linux-x86_64-2.6.0.tgz
+mongo_downloaded_filename: mongodb-linux-x86_64-2.6.0.tgz
+mongo_download_dir: ~/Downloads
+mongo_dir_name: mongodb-linux-x86_64-2.6.0
+
+# Configuracoes do mongodb
+mongo_unpack_dir: "{{home_dir}}"
+mongo_installation_dir: "{{home_dir}}/{{mongo_dir_name}}"
+mongo_config_dir: "{{mongo_installation_dir}}/conf"
+mongo_configfile: "{{mongo_config_dir}}/mongodb.conf"
+mongo_log_dir: "{{mongo_installation_dir}}/log"
+mongo_logfile: "{{mongo_log_dir}}/mongodb.log"
+mongo_port: 27021
+mongo_database_dir: "{{mongo_config_dir}}/data"
+mongo_port: 27021
+
+# Usuario usado pelo vagrant
+ssh_user: "vagrant"
+

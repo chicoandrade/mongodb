@@ -1,0 +1,48 @@
+---
+# MOMNIT CONFIGURATION
+
+- name: Download MongoDB
+  connection: local
+  get_url: 
+     url="{{mongo_download_url}}"
+     dest="{{mongo_download_dir}}/"
+
+#- name: Moving downloaded mongo to remote server
+#  copy:
+#     src="{{mongo_downloaded_filename}}"
+#     dest="{{mongo_download_dir}}"
+
+- name: Unpacking MongoDB
+  unarchive: 
+     src="{{mongo_download_dir}}/{{mongo_downloaded_filename}}"
+     dest="{{mongo_unpack_dir}}"
+
+- name: Create mongo data dir
+  file:
+    path="{{mongo_database_dir}}"
+    state=directory
+
+- name: Create mongo log dir
+  file:
+    path="{{mongo_log_dir}}"
+    state=directory
+
+- name: Create mongo config dir
+  file:
+    path="{{mongo_config_dir}}"
+    state=directory
+
+- name: creating mongo config file
+  template:
+    src="./mongodb.conf"
+    dest="{{mongo_configfile}}"
+    mode=755
+
+- name: moving mongo startup script
+  template:
+    src="./startMongo.sh"
+    dest="{{mongo_installation_dir}}/"
+    mode=755
+
+- name: Adjusting local config
+  command: echo "export LC_ALL=C" >> "{{home_dir}}/.bashrc"
