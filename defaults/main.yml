@@ -21,6 +21,7 @@ mongo_database_dir: "{{mongo_config_dir}}/data"
 mongo_admin_user: "admin"
 mongo_admin_password: "admin"
 mongo_scripts_dir: "{{mongo_installation_dir}}/scripts" 
+replicaset_name: "repset01"
 
 # Usuario usado pelo vagrant
 ssh_user: "vagrant"
