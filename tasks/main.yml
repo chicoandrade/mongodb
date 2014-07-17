@@ -6,6 +6,7 @@
   get_url: 
      url="{{mongo_download_url}}"
      dest="{{mongo_download_dir}}/"
+  tags: download
 
 #- name: Moving downloaded mongo to remote server
 #  copy:
@@ -16,6 +17,7 @@
   unarchive: 
      src="{{mongo_download_dir}}/{{mongo_downloaded_filename}}"
      dest="{{mongo_unpack_dir}}"
+  tags: unpack
 
 - name: Create mongo data dir
   file:
