@@ -1,6 +1,9 @@
 ---
-- name: start monit
-  command: "{{destiny_path}}/monit/bin/monit"
+- name: start mongodb
+  command: "{{mongo_installation_dir}}/startMongo.sh"
 
-- name: reload monit
-  command: "{{destiny_path}}/monit/bin/monit reload"
+- name: start replicaset
+  command: "{{mongo_scripts_dir}}/initiateRepSet.sh"
+
+- name: create admin user
+  command: "{{mongo_scripts_dir}}/createAdminUser.sh"

@@ -68,3 +68,7 @@
     src="./createAdminUser.sh"
     dest="{{mongo_scripts_dir}}"
     mode=755
+  notify:
+    - start mongodb
+    - start replicaset
+    - create admin user
