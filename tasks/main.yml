@@ -32,6 +32,11 @@
     path="{{mongo_config_dir}}"
     state=directory
 
+- name: create mongo scripts dir
+  file:
+    path="{{mongo_scripts_dir}}/"
+    state=directory
+
 - name: creating mongo config file
   template:
     src="./mongodb.conf"
@@ -44,5 +49,20 @@
     dest="{{mongo_installation_dir}}/"
     mode=755
 
-- name: Adjusting local config
-  command: echo "export LC_ALL=C" >> "{{home_dir}}/.bashrc"
+- name: moving mongo create admin js
+  template:
+    src="./admin_user.js"
+    dest="{{mongo_scripts_dir}}/"
+    mode=755
+
+- name: moving mongo replicaset starter script
+  template:
+    src="./initiateRepSet.sh"
+    dest="{{mongo_scripts_dir}}"
+    mode=755
+
+- name: moving mongo create admin script
+  template:
+    src="./createAdminUser.sh"
+    dest="{{mongo_scripts_dir}}"
+    mode=755
