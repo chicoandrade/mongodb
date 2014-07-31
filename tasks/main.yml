@@ -7,61 +7,80 @@
      url="{{mongo_download_url}}"
      dest="{{mongo_download_dir}}/"
   tags: download
-
-#- name: Moving downloaded mongo to remote server
-#  copy:
-#     src="{{mongo_downloaded_filename}}"
-#     dest="{{mongo_download_dir}}"
+  when: mongo_action == 'install'
 
 - name: Unpacking MongoDB
   unarchive: 
      src="{{mongo_download_dir}}/{{mongo_downloaded_filename}}"
      dest="{{mongo_unpack_dir}}"
   tags: unpack
+  when: mongo_action == 'install'
 
 - name: Create mongo data dir
   file:
     path="{{mongo_database_dir}}"
     state=directory
+  tags: installation
+  when: mongo_action == 'install'
 
 - name: Create mongo log dir
   file:
     path="{{mongo_log_dir}}"
     state=directory
+  tags: installation
+  when: mongo_action == 'install'
 
 - name: Create mongo config dir
   file:
     path="{{mongo_config_dir}}"
     state=directory
+  tags: installation
+  when: mongo_action == 'install'
 
 - name: create mongo scripts dir
   file:
     path="{{mongo_scripts_dir}}/"
     state=directory
+  tags: installation
+  when: mongo_action == 'install'
 
 - name: creating mongo config file
   template:
     src="./mongodb.conf"
     dest="{{mongo_configfile}}"
     mode=755
+  tags: installation
+  when: mongo_action == 'install'
 
 - name: moving mongo startup script
   template:
     src="./startMongo.sh"
     dest="{{mongo_installation_dir}}/"
     mode=755
+  tags: installation
+  when: mongo_action == 'install'
 
 - name: moving mongo create admin js
   template:
     src="./admin_user.js"
     dest="{{mongo_scripts_dir}}/"
     mode=755
+  notify:
+    - start mongodb
+  tags: installation
+  when: mongo_action == 'install'
+  ignore_errors: yes
 
 - name: moving mongo replicaset starter script
   template:
     src="./initiateRepSet.sh"
     dest="{{mongo_scripts_dir}}"
     mode=755
+  notify:
+    - start replicaset
+  tags: primary
+  when: mongo_action == "prepare_primary"
+  ignore_errors: yes
 
 - name: moving mongo create admin script
   template:
@@ -69,6 +88,7 @@
     dest="{{mongo_scripts_dir}}"
     mode=755
   notify:
-    - start mongodb
-    - start replicaset
     - create admin user
+  tags: primary
+  when: mongo_action == "prepare_primary"
+  ignore_errors: yes
