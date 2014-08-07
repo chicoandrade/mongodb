@@ -16,6 +16,7 @@ mongo_config_dir: "{{mongo_installation_dir}}/conf"
 mongo_configfile: "{{mongo_config_dir}}/mongodb.conf"
 mongo_log_dir: "{{mongo_installation_dir}}/log"
 mongo_logfile: "{{mongo_log_dir}}/mongodb.log"
+mongo_keyfile_path: "{{mongo_config_dir}}/mongodb.key"
 mongo_port: 27017
 mongo_database_dir: "{{mongo_config_dir}}/data"
 mongo_admin_user: "admin"
@@ -25,4 +26,3 @@ replicaset_name: "repset01"
 
 # Usuario usado pelo vagrant
 ssh_user: "vagrant"
-

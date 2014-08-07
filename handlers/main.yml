@@ -1,4 +1,7 @@
 ---
+- name: create keyfile
+  command: "openssl rand -base64 741 > {{mongo_keyfile}}"
+
 - name: start mongodb
   command: "{{mongo_installation_dir}}/startMongo.sh"
 
