@@ -1,0 +1,15 @@
+###############################################################################
+## Monit control file
+###############################################################################
+  set daemon 60
+  set logfile {{monitrc_files}}/log/monit.log
+  set idfile {{monitrc_files}}/id
+  set statefile {{monitrc_files}}/state
+  set eventqueue
+      basedir {{monitrc_files}}/events
+      slots 100                    
+ set httpd port 2812 and
+    allow ideais:ideais
+
+check host mongodb_{{mongo_port}} with address "localhost"
+        if failed port {{mongo_port}} protocol http request "/isMaster?text=1" then exec "{{mongo_installation_dir}}/bin/mongo --config {{mongo_configfile}}"
