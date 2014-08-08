@@ -58,6 +58,8 @@
     src="./startMongo.sh"
     dest="{{mongo_starter_script}}"
     mode=755
+  notify:
+    - start mongodb
   tags: installation
   when: mongo_action == 'install'
 
@@ -66,8 +68,6 @@
     src="./admin_user.js"
     dest="{{mongo_scripts_dir}}/"
     mode=755
-  notify:
-    - start mongodb
   tags: installation
   when: mongo_action == 'prepare_primary'
   ignore_errors: yes
