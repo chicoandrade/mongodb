@@ -55,7 +55,7 @@
 - name: moving mongo startup script
   template:
     src="./startMongo.sh"
-    dest="{{mongo_installation_dir}}/"
+    dest="{{mongo_starter_script}}"
     mode=755
   tags: installation
   when: mongo_action == 'install'
