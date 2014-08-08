@@ -44,13 +44,13 @@
   tags: installation
   when: mongo_action == 'install' and mongo_keyfile is defined
 
-- name: moving monitrc file
+- name: moving monit check mongo file
   template:
-    src="./monitrc"
-    dest="{{monit_installation_dir}}/"
-    mode=711
+    src="./monit_mongo.cfg"
+    dest="{{monit_extra_checks_dir}}/"
+    mode=700
   tags: installation
-  when: mongo_action == 'install' and monit_installation_dir is defined
+  when: mongo_action == 'install' and monit_extra_checks_dir is defined
 
 - name: moving mongo startup script
   template:
