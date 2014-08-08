@@ -1,28 +1,31 @@
 ---
 
 # home dir
-home_dir: "/home/vagrant/"
+home_dir: "/home/vagrant"
 
 # URL para baixar o mongo
 mongo_download_url: http://192.168.50.49/repository/applications/mongo/2.6.0/mongodb-linux-x86_64-2.6.0.tgz
 mongo_downloaded_filename: mongodb-linux-x86_64-2.6.0.tgz
 mongo_download_dir: ~/Downloads
-mongo_dir_name: mongodb-linux-x86_64-2.6.0
+mongo_dir_name: mongodb
+mongo_extracted_dir_name: mongodb-linux-x86_64-2.6.0
 
 # Configuracoes do mongodb
 mongo_unpack_dir: "{{home_dir}}"
-mongo_installation_dir: "{{home_dir}}/{{mongo_dir_name}}"
-mongo_config_dir: "{{mongo_installation_dir}}/conf"
+mongo_port: "27017"
+mongo_extract_dir: "{{home_dir}}/{{mongo_dir_name}}"
+mongo_installation_dir: "{{home_dir}}/{{mongo_dir_name}}/{{mongo_extracted_dir_name}}"
+mongo_instance_dir: "{{home_dir}}/{{mongo_dir_name}}/{{mongo_port}}"
+mongo_config_dir: "{{mongo_instance_dir}}/conf"
 mongo_configfile: "{{mongo_config_dir}}/mongodb.conf"
-mongo_log_dir: "{{mongo_installation_dir}}/log"
+mongo_log_dir: "{{mongo_instance_dir}}/log"
 mongo_logfile: "{{mongo_log_dir}}/mongodb.log"
 mongo_keyfile_path: "{{mongo_config_dir}}/mongodb.key"
-mongo_port: 27017
 mongo_database_dir: "{{mongo_config_dir}}/data"
 mongo_admin_user: "admin"
 mongo_admin_password: "admin"
-mongo_starter_script: "{{mongo_installation_dir}}/startMongo.sh"
-mongo_scripts_dir: "{{mongo_installation_dir}}/scripts" 
+mongo_starter_script: "{{mongo_instance_dir}}/startMongo.sh"
+mongo_scripts_dir: "{{mongo_instance_dir}}/scripts" 
 replicaset_name: "repset01"
 
 # Usuario usado pelo vagrant

@@ -7,9 +7,11 @@
     state=directory
   with_items:
    - "{{home_dir}}"
+   - "{{mongo_installation_dir}}"
+   - "{{mongo_instance_dir}}"
+   - "{{mongo_config_dir}}"
    - "{{mongo_database_dir}}"
    - "{{mongo_log_dir}}"
-   - "{{mongo_config_dir}}"
    - "{{mongo_scripts_dir}}/"
   tags: installation
   when: mongo_action == 'install'
@@ -25,7 +27,7 @@
 - name: Unpacking MongoDB
   unarchive: 
      src="{{mongo_download_dir}}/{{mongo_downloaded_filename}}"
-     dest="{{mongo_unpack_dir}}"
+     dest="{{mongo_extract_dir}}"
   tags: unpack
   when: mongo_action == 'install'
 

@@ -3,7 +3,7 @@
   command: "openssl rand -base64 741 > {{mongo_keyfile}}"
 
 - name: start mongodb
-  command: "{{mongo_installation_dir}}/startMongo.sh"
+  command: "{{mongo_instance_dir}}/startMongo.sh"
 
 - name: start replicaset
   command: "{{mongo_scripts_dir}}/initiateRepSet.sh"
