@@ -16,31 +16,15 @@
   tags: unpack
   when: mongo_action == 'install'
 
-- name: Create mongo data dir
+- name: Create mongo directories
   file:
-    path="{{mongo_database_dir}}"
+    path="{{item}}"
     state=directory
-  tags: installation
-  when: mongo_action == 'install'
-
-- name: Create mongo log dir
-  file:
-    path="{{mongo_log_dir}}"
-    state=directory
-  tags: installation
-  when: mongo_action == 'install'
-
-- name: Create mongo config dir
-  file:
-    path="{{mongo_config_dir}}"
-    state=directory
-  tags: installation
-  when: mongo_action == 'install'
-
-- name: create mongo scripts dir
-  file:
-    path="{{mongo_scripts_dir}}/"
-    state=directory
+  with_items:
+   - "{{mongo_database_dir}}"
+   - "{{mongo_log_dir}}"
+   - "{{mongo_config_dir}}"
+   - "{{mongo_scripts_dir}}/"
   tags: installation
   when: mongo_action == 'install'
 
@@ -59,6 +43,14 @@
     mode=600
   tags: installation
   when: mongo_action == 'install' and mongo_keyfile is defined
+
+- name: moving monitrc file
+  template:
+    src="./monitrc"
+    dest="{{monit_installation_dir}}/"
+    mode=711
+  tags: installation
+  when: mongo_action == 'install' and monit_installation_dir is defined
 
 - name: moving mongo startup script
   template:
