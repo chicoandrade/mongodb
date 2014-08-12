@@ -7,6 +7,7 @@
     state=directory
   with_items:
    - "{{home_dir}}"
+   - "{{mongo_extract_dir}}"
    - "{{mongo_installation_dir}}"
    - "{{mongo_instance_dir}}"
    - "{{mongo_config_dir}}"
