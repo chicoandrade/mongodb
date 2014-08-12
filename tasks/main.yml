@@ -61,8 +61,6 @@
     src="./startMongo.sh"
     dest="{{mongo_starter_script}}"
     mode=755
-  notify:
-    - start mongodb
   tags: installation
   when: mongo_action == 'install'
 
