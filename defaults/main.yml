@@ -4,7 +4,7 @@
 home_dir: "/home/vagrant"
 
 # URL para baixar o mongo
-mongo_download_url: http://192.168.50.49/repository/applications/mongo/2.6.0/mongodb-linux-x86_64-2.6.0.tgz
+mongo_download_url: http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.0.tgz
 mongo_downloaded_filename: mongodb-linux-x86_64-2.6.0.tgz
 mongo_download_dir: ~/Downloads
 mongo_dir_name: mongodb
