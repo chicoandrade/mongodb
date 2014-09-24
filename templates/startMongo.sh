@@ -9,6 +9,6 @@ touch {{mongo_logfile}}
 echo "Startando mongo"
 cat {{mongo_configfile}} | grep -i port
 
-{{mongo_installation_dir}}/bin/mongod --config {{mongo_configfile}}
+{{mongo_installation_dir}}/{{mongo_extracted_dir_name}}/bin/mongod --config {{mongo_configfile}}
 
 exit 0

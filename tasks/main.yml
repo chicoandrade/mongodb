@@ -1,14 +1,14 @@
 ---
-# MOMNIT CONFIGURATION
-
 - name: Create mongo directories
+  sudo: yes
   file:
     path="{{item}}"
     state=directory
+    owner="{{mongo_user}}"
+    group="{{mongo_group}}"
   with_items:
-   - "{{home_dir}}"
-   - "{{mongo_extract_dir}}"
    - "{{mongo_installation_dir}}"
+   - "{{mongo_extract_dir}}"
    - "{{mongo_instance_dir}}"
    - "{{mongo_config_dir}}"
    - "{{mongo_database_dir}}"
@@ -87,9 +87,6 @@
     src="./createAdminUser.sh"
     dest="{{mongo_scripts_dir}}"
     mode=755
-  notify:
-    - start replicaset
-    - create admin user
   tags: primary
   when: mongo_action == "prepare_primary"
   ignore_errors: yes
