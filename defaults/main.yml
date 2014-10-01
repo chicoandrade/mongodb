@@ -3,15 +3,15 @@
 home_dir: "~/"
 
 # Usuario do ansible
-mongo_user: "cloudopen"
-mongo_group: "cloudopen"
+mongo_user: "ubuntu"
+mongo_group: "ubuntu"
 
 # URL para baixar o mongo
-mongo_download_url: http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.0.tgz
-mongo_downloaded_filename: mongodb-linux-x86_64-2.6.0.tgz
+mongo_download_url: http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.4.tgz
+mongo_downloaded_filename: mongodb-linux-x86_64-2.6.4.tgz
 mongo_download_dir: /tmp/
 mongo_dir_name: mongodb
-mongo_extracted_dir_name: mongodb-linux-x86_64-2.6.0
+mongo_extracted_dir_name: mongodb-linux-x86_64-2.6.4
 
 # Diretorios do mongodb
 mongo_installation_dir: "/mongodb/"
@@ -19,10 +19,12 @@ mongo_extract_dir: "{{mongo_installation_dir}}/"
 mongo_instance_dir: "{{mongo_installation_dir}}/{{mongo_port}}/"
 mongo_config_dir: "{{mongo_instance_dir}}/conf/"
 mongo_log_dir: "{{mongo_instance_dir}}/log/"
+mongo_log_dir_rotated: "{{mongo_instance_dir}}/log/rotate/"
 mongo_database_dir: "{{mongo_instance_dir}}/data/"
 mongo_scripts_dir: "{{mongo_instance_dir}}/scripts/"
 mongo_configfile: "{{mongo_config_dir}}/mongodb.conf"
-mongo_logfile: "{{mongo_log_dir}}/mongodb_{{mongo_port}}.log"
+mongo_logfile_name: "mongodb_{{mongo_port}}.log"
+mongo_logfile: "{{mongo_log_dir}}/{{mongo_logfile_name}}"
 mongo_keyfile_path: "{{mongo_instance_dir}}/mongodb.key"
 mongo_starter_script: "{{mongo_instance_dir}}/startMongo.sh"
 
@@ -30,4 +32,4 @@ mongo_starter_script: "{{mongo_instance_dir}}/startMongo.sh"
 mongo_port: "27001"
 mongo_admin_user: "admin"
 mongo_admin_password: "admin"
-replicaset_name: "B2WReplSetProd"
+replicaset_name: "ReplSetProd"

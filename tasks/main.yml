@@ -18,10 +18,10 @@
   when: mongo_action == 'install'
 
 - name: Download MongoDB
-  connection: local
-  get_url: 
-     url="{{mongo_download_url}}"
-     dest="{{mongo_download_dir}}/"
+  local_action: >
+    get_url 
+      url="{{mongo_download_url}}"
+      dest="{{mongo_download_dir}}/"
   tags: download
   when: mongo_action == 'install'
 
@@ -63,6 +63,22 @@
     mode=755
   tags: installation
   when: mongo_action == 'install'
+
+- name: creating log rotate script
+  template:
+    src="./logRotater.sh"
+    dest="{{mongo_scripts_dir}}"
+    mode=755
+  tags: installation
+  when: mongo_action == 'install'
+
+- name: creating job for log rotate on crontab
+  cron: 
+    name="log rotater"
+    hour="0"
+    minute="0"
+    job="{{mongo_scripts_dir}}/logRotater.sh"
+  tags: installation
 
 - name: moving mongo create admin js
   template:

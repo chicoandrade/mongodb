@@ -1,8 +1,8 @@
 ---
 - hosts: all
   roles:
-  - { role: mongodb, mongo_action: 'install', mongo_installation_dir: '/mongodb/', monit_extra_checks_dir: '/opt/monit/checks/', mongo_keyfile: './mongodb.key' , replicaset_name: 'B2WReplSetProd' }
+  - { role: mongodb, mongo_action: 'install', mongo_installation_dir: '/mongodb/', monit_extra_checks_dir: '/opt/monit/checks/', mongo_keyfile: './mongodb.key' , replicaset_name: 'ReplSetProd' }
 
 - hosts: all
   roles:
-  - { role: mongodb, mongo_action: 'prepare_primary', mongo_installation_dir: '/mongodb/', replicaset_name: 'B2WReplSetProd', monit_extra_checks_dir: '/home/cloudopen/monit/checks/' }
+  - { role: mongodb, mongo_action: 'prepare_primary', mongo_installation_dir: '/mongodb/', replicaset_name: 'ReplSetProd', monit_extra_checks_dir: '/home/ubuntu/monit/checks/' }
