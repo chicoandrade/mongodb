@@ -25,7 +25,7 @@ mongo_scripts_dir: "{{mongo_instance_dir}}/scripts/"
 mongo_configfile: "{{mongo_config_dir}}/mongodb.conf"
 mongo_logfile_name: "mongodb_{{mongo_port}}.log"
 mongo_logfile: "{{mongo_log_dir}}/{{mongo_logfile_name}}"
-mongo_keyfile_path: "{{mongo_instance_dir}}/mongodb.key"
+mongo_keyfile_path: "{{mongo_config_dir}}/"
 mongo_starter_script: "{{mongo_instance_dir}}/startMongo.sh"
 
 # Configuracoes do mongodb
