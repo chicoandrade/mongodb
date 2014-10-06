@@ -36,7 +36,7 @@
   template:
     src="./mongodb.conf"
     dest="{{mongo_configfile}}"
-    mode=755
+    mode=744
   tags: installation
   when: mongo_action == 'install'
 
@@ -60,7 +60,15 @@
   template:
     src="./startMongo.sh"
     dest="{{mongo_starter_script}}"
-    mode=755
+    mode=744
+  tags: installation
+  when: mongo_action == 'install'
+
+- name: moving mongo startup script
+  template:
+    src="./mongodb"
+    dest="/etc/init.d/"
+    mode=744
   tags: installation
   when: mongo_action == 'install'
 
@@ -106,3 +114,10 @@
   tags: primary
   when: mongo_action == "prepare_primary"
   ignore_errors: yes
+
+- name: double check files ownership
+  file:
+    path="{{mongo_installation_dir}}"
+    owner="{{mongo_user}}"
+    group="{{mongo_group}}"
+    recurse="true"
