@@ -1,10 +1,12 @@
 #!/bin/bash
 
+export LC_ALL=C
+
 CONFIGFILE="{{mongo_configfile}}"
 OPTIONS=" --config $CONFIGFILE"
 
 PIDFILE=`ps -fe | grep "$CONFIGFILE" | grep -v grep | tr -s " "|cut -d" " -f2`
-mongod=/mongodb/bin/mongod
+mongod={{mongo_installation_dir}}/{{mongo_extracted_dir_name}}/bin/mongod
 
 MONGO_USER={{mongo_user}}
 MONGO_GROUP={{mongo_group}}
