@@ -67,7 +67,7 @@
 - name: moving mongo startup script
   template:
     src="./mongodb"
-    dest="/etc/init.d/"
+    dest="/etc/init.d/mongodb"
     mode=744
   tags: installation
   when: mongo_action == 'install'
